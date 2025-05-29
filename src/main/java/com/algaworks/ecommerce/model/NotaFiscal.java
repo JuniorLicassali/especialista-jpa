@@ -10,16 +10,11 @@ import java.util.Date;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "nota_fiscal")
-public class NotaFiscal {
+public class NotaFiscal extends EntidadeBaseInteger {
 
-    @EqualsAndHashCode.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
 //    @JoinTable(name = "pedido_nota_fiscal",
@@ -27,7 +22,8 @@ public class NotaFiscal {
 //            inverseJoinColumns = @JoinColumn(name = "pedido_id", unique = true))
     private Pedido pedido;
 
-    private String xml;
+    @Lob
+    private byte[] xml;
 
     @Column(name = "data_emissao")
     private Date dataEmissao;

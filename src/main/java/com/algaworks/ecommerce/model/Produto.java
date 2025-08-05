@@ -1,8 +1,6 @@
 package com.algaworks.ecommerce.model;
 
 import com.algaworks.ecommerce.listener.GenericoListener;
-import com.algaworks.ecommerce.listener.GerarNotaFiscalListener;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,13 +8,17 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
-@EntityListeners({GenericoListener.class})
+@NamedQueries({
+        @NamedQuery(name = "Produto.listar", query = "select p from Produto p"),
+        @NamedQuery(name = "Produto.listarPorCategoria", query = "select p from Produto p where exists (select 1 from Categoria c2 join c2.produtos p2 where p2 = p and c2.id = :categoria)")
+})
+@EntityListeners({ GenericoListener.class })
 @Entity
-@Table(name = "produto", uniqueConstraints = { @UniqueConstraint(name = "unq_nome", columnNames = "nome") },
+@Table(name = "produto",
+        uniqueConstraints = { @UniqueConstraint(name = "unq_nome", columnNames = { "nome" }) },
         indexes = { @Index(name = "idx_nome", columnList = "nome") })
 public class Produto extends EntidadeBaseInteger {
 
@@ -60,5 +62,4 @@ public class Produto extends EntidadeBaseInteger {
             joinColumns = @JoinColumn(name = "produto_id", nullable = false,
                     foreignKey = @ForeignKey(name = "fk_produto_atributo_produto")))
     private List<Atributo> atributos;
-
 }

@@ -1,10 +1,7 @@
 package com.algaworks.ecommerce.operacoesemcascata;
 
 import com.algaworks.ecommerce.EntityManagerTest;
-import com.algaworks.ecommerce.model.ItemPedido;
-import com.algaworks.ecommerce.model.ItemPedidoId;
-import com.algaworks.ecommerce.model.Pedido;
-import com.algaworks.ecommerce.model.Produto;
+import com.algaworks.ecommerce.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 

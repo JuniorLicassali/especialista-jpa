@@ -31,5 +31,4 @@ public class EnderecoEntregaPedido {
 
     @Column(length = 2)
     private String estado;
-
 }

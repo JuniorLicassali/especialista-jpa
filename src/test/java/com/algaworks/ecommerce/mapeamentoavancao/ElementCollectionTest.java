@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.mapeamentoavancado;
+package com.algaworks.ecommerce.mapeamentoavancao;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Atributo;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ElementCollectionTest extends EntityManagerTest {
-//parei aula 72
+
     @Test
     public void aplicarTags() {
         entityManager.getTransaction().begin();
@@ -54,7 +54,9 @@ public class ElementCollectionTest extends EntityManagerTest {
         entityManager.clear();
 
         Cliente clienteVerificacao = entityManager.find(Cliente.class, cliente.getId());
-        Assert.assertEquals("fernando@email.com", clienteVerificacao.getContatos().get("email"));
+        Assert.assertEquals(
+                "fernando@email.com", clienteVerificacao.getContatos().get("email"));
     }
+
 
 }

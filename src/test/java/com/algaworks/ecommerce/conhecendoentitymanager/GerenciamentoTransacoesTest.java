@@ -2,7 +2,6 @@ package com.algaworks.ecommerce.conhecendoentitymanager;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Pedido;
-import com.algaworks.ecommerce.model.Produto;
 import com.algaworks.ecommerce.model.StatusPedido;
 import org.junit.Test;
 
@@ -18,8 +17,6 @@ public class GerenciamentoTransacoesTest extends EntityManagerTest {
             entityManager.getTransaction().rollback();
             throw e;
         }
-
-
     }
 
     private void metodoDeNegocio() {
@@ -30,5 +27,4 @@ public class GerenciamentoTransacoesTest extends EntityManagerTest {
             throw new RuntimeException("Pedido ainda não foi pago.");
         }
     }
-
 }

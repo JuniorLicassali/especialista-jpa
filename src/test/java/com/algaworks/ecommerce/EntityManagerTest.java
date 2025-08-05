@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce;
 
+import com.algaworks.ecommerce.model.Produto;
 import org.junit.*;
 
 import javax.persistence.EntityManager;
@@ -14,7 +15,8 @@ public class EntityManagerTest {
 
     @BeforeClass
     public static void setUpBeforeClass() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("Ecommerce-PU");
+        entityManagerFactory = Persistence
+                .createEntityManagerFactory("Ecommerce-PU");
     }
 
     @AfterClass
@@ -31,5 +33,4 @@ public class EntityManagerTest {
     public void tearDown() {
         entityManager.close();
     }
-
 }

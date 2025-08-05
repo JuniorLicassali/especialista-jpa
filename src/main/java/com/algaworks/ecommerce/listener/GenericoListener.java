@@ -8,5 +8,4 @@ public class GenericoListener {
     public void logCarregamento(Object obj) {
         System.out.println("Entidade " + obj.getClass().getSimpleName() + " foi carregada.");
     }
-
 }

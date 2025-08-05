@@ -8,6 +8,9 @@ import com.algaworks.ecommerce.model.StatusPedido;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 public class ListenersTest extends EntityManagerTest {
 
     @Test
@@ -21,21 +24,23 @@ public class ListenersTest extends EntityManagerTest {
         Cliente cliente = entityManager.find(Cliente.class, 1);
 
         Pedido pedido = new Pedido();
+        pedido.setDataCriacao(LocalDateTime.now());
+        pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.AGUARDANDO);
+        pedido.setTotal(BigDecimal.TEN);
 
-         pedido.setCliente(cliente);
-         pedido.setStatus(StatusPedido.AGUARDANDO);
+        entityManager.getTransaction().begin();
 
-         entityManager.getTransaction().begin();
-         entityManager.persist(pedido);
-         entityManager.flush();
-         pedido.setStatus(StatusPedido.PAGO);
-         entityManager.getTransaction().commit();
+        entityManager.persist(pedido);
+        entityManager.flush();
 
-         entityManager.clear();
+        pedido.setStatus(StatusPedido.PAGO);
+        entityManager.getTransaction().commit();
 
-         Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+        entityManager.clear();
+
+        Pedido pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
         Assert.assertNotNull(pedidoVerificacao.getDataCriacao());
         Assert.assertNotNull(pedidoVerificacao.getDataUltimaAtualizacao());
     }
-
 }

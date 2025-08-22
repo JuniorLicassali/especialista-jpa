@@ -13,9 +13,6 @@ import java.util.List;
 
 public class SubqueriesTest extends EntityManagerTest {
 
-    //    parei aula 09.4
-
-
     @Test
     public void pesquisarComAllExercicio() {
         // Todos os produtos que sempre foram vendidos pelo mesmo preço.
